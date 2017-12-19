@@ -1,0 +1,11 @@
+version: '2'
+services:
+  businessdecisision_cron_handler:
+    image: businessdecisision_cron_handler:v0.1
+    container_name: businessdecisision_cron_handler
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs:/var/log/
+    labels:
+      com.businessdecisision.cron_handler_configuration: '[{"cmd":"*/2 * * * *    /bin/run.sh >> /var/log/myjob.log 2>&1"}]'
+  
